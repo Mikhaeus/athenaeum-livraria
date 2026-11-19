@@ -1,0 +1,26 @@
+ATHENAEUM — CONTAS DE TESTE
+===========================
+
+Administrador (único):
+Nome: Gustavo Martins
+E-mail: gustavo.martins@gmail.com
+Senha: gustavo2026
+
+13 contas de clientes (senha igual em todas):
+Senha: leitor2026
+
+01. Mariana Alves | mariana.alves@example.com | leitor2026
+02. João Pedro Martins | joao.martins@example.com | leitor2026
+03. Lucas Ferreira | lucas.ferreira@example.com | leitor2026
+04. Ana Clara Souza | ana.souza@example.com | leitor2026
+05. Carlos Eduardo Lima | carlos.lima@example.com | leitor2026
+06. Beatriz Mendes | beatriz.mendes@example.com | leitor2026
+07. Rafael Oliveira | rafael.oliveira@example.com | leitor2026
+08. Gabriel Santos | gabriel.santos@example.com | leitor2026
+09. Fernanda Costa | fernanda.costa@example.com | leitor2026
+10. Pedro Henrique Rocha | pedro.rocha@example.com | leitor2026
+11. Juliana Martins | juliana.martins@example.com | leitor2026
+12. Thiago Almeida | thiago.almeida@example.com | leitor2026
+13. Camila Ribeiro | camila.ribeiro@example.com | leitor2026
+
+Observação: estas são credenciais de demonstração locais. Troque a senha do administrador antes de qualquer publicação real. As senhas no banco estão armazenadas com password_hash() e validadas com password_verify().

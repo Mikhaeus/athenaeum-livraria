@@ -1,0 +1,37 @@
+ATHENAEUM — ROTEIRO RÁPIDO DE TESTE
+===================================
+
+INSTALAÇÃO
+1. Extraia athenaeum_livraria em C:\xampp\htdocs.
+2. Ligue Apache e MySQL no XAMPP.
+3. Importe athenaeum_livraria\banco.sql pelo phpMyAdmin.
+4. Abra http://localhost/athenaeum_livraria/
+
+TESTE COMO CLIENTE
+1. Entre com mariana.alves@example.com / leitor2026.
+2. Confira a reserva/aluguel de demonstração e a multa pendente.
+3. Abra o acervo, pesquise livros e entre em Ver detalhes.
+4. Adicione um livro ao carrinho e finalize o pedido.
+5. Faça uma reserva para aluguel e confira a área Minha conta.
+
+TESTE COMO ADMINISTRADOR
+1. Saia da conta do cliente.
+2. Entre com gustavo.martins@gmail.com / gustavo2026.
+3. Abra o Painel e confira livros, clientes, compras, aluguéis e multas.
+4. Em Aluguéis, confirme a retirada da reserva de João Pedro Martins.
+5. A data prevista de devolução será sete dias depois da retirada.
+6. Registre a devolução e confira o histórico do cliente.
+7. Em Livros, edite cadastro/estoque ou adicione uma capa de teste.
+8. Em Usuários, abra o histórico de um cliente para consultar compras, aluguéis e multas.
+
+DADOS JÁ INCLUÍDOS NO BANCO
+- Mariana Alves tem um aluguel vencido há três dias, para demonstrar uma multa inicial de R$ 6,00.
+- João Pedro Martins tem uma reserva de O Hobbit aguardando retirada.
+- Lucas Ferreira tem um pedido de compra de demonstração.
+
+OBSERVAÇÕES
+- As capas não foram incluídas. Você pode adicioná-las pelo formulário administrativo.
+- A multa é R$ 2,00 por dia de atraso.
+- O prazo padrão é sete dias a partir da confirmação de retirada.
+- A compra é registrada para demonstração; não há cobrança real integrada.
+- Para recomeçar os testes, reimporte banco.sql. Atenção: isso recria as tabelas do banco athenaeum_livraria.

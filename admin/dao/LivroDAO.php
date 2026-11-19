@@ -1,0 +1,12 @@
+<?php
+class LivroDAO {
+ public function __construct(private PDO $pdo){}
+ public function listar(string $q='',string $categoria=''): array { $sql="SELECT * FROM livros WHERE ativo=1"; $p=[]; if($q!==''){$sql.=" AND (titulo LIKE :q1 OR autor LIKE :q2 OR sinopse LIKE :q3)";$p['q1']="%$q%";$p['q2']="%$q%";$p['q3']="%$q%";} if($categoria!==''){$sql.=" AND categoria=:c";$p['c']=$categoria;} $sql.=" ORDER BY titulo"; $st=$this->pdo->prepare($sql);$st->execute($p);return $st->fetchAll(); }
+ public function listarTodos(): array { return $this->pdo->query("SELECT * FROM livros ORDER BY titulo")->fetchAll(); }
+ public function categorias(): array { return $this->pdo->query("SELECT DISTINCT categoria FROM livros WHERE ativo=1 ORDER BY categoria")->fetchAll(PDO::FETCH_COLUMN); }
+ public function buscarPorId(int $id): ?array { $s=$this->pdo->prepare("SELECT l.*, GREATEST(l.estoque_aluguel-(SELECT COUNT(*) FROM alugueis a WHERE a.livro_id=l.id AND a.status IN ('reservado','ativo')),0) AS disponiveis_aluguel FROM livros l WHERE l.id=?");$s->execute([$id]);return $s->fetch()?:null; }
+ public function cadastrar(array $d): int { $s=$this->pdo->prepare("INSERT INTO livros(titulo,autor,categoria,colecao,sinopse,preco_venda,valor_aluguel,estoque_venda,estoque_aluguel,imagem,fonte_sinopse,fonte_preco,ativo) VALUES(:titulo,:autor,:categoria,:colecao,:sinopse,:preco,:aluguel,:ev,:ea,:imagem,:fs,:fp,1)");$s->execute($this->params($d));return (int)$this->pdo->lastInsertId(); }
+ public function editar(int $id,array $d): bool { $p=$this->params($d);$p['id']=$id;$s=$this->pdo->prepare("UPDATE livros SET titulo=:titulo,autor=:autor,categoria=:categoria,colecao=:colecao,sinopse=:sinopse,preco_venda=:preco,valor_aluguel=:aluguel,estoque_venda=:ev,estoque_aluguel=:ea,imagem=:imagem,fonte_sinopse=:fs,fonte_preco=:fp WHERE id=:id");return $s->execute($p); }
+ private function params(array $d): array { return ['titulo'=>trim($d['titulo']??''),'autor'=>trim($d['autor']??''),'categoria'=>trim($d['categoria']??''),'colecao'=>trim($d['colecao']??''),'sinopse'=>trim($d['sinopse']??''),'preco'=>(float)($d['preco_venda']??0),'aluguel'=>(float)($d['valor_aluguel']??0),'ev'=>max(0,(int)($d['estoque_venda']??0)),'ea'=>max(0,(int)($d['estoque_aluguel']??0)),'imagem'=>($d['imagem']??'')?:null,'fs'=>($d['fonte_sinopse']??'')?:null,'fp'=>($d['fonte_preco']??'')?:null]; }
+ public function deletar(int $id): bool { $s=$this->pdo->prepare("UPDATE livros SET ativo=0 WHERE id=?");return $s->execute([$id]); }
+}

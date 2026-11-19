@@ -1,0 +1,3 @@
+<?php
+class Livro { private LivroDAO $dao; public function __construct(){ $this->dao=new LivroDAO(db()); }
+ public function listar(string $q='',string $categoria=''):array{return $this->dao->listar($q,$categoria);} public function listarTodos():array{return $this->dao->listarTodos();} public function categorias():array{return $this->dao->categorias();} public function buscarPorId(int $id):?array{return $this->dao->buscarPorId($id);} public function cadastrar(array $d):int{return $this->dao->cadastrar($d);} public function editar(int $id,array $d):bool{return $this->dao->editar($id,$d);} public function deletar(int $id):bool{return $this->dao->deletar($id);} }

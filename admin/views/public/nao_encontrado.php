@@ -1,0 +1,1 @@
+<section class="empty-state"><span class="eyebrow">PÁGINA NÃO ENCONTRADA</span><h1>Esta página não está no acervo.</h1><p>O endereço pode estar incorreto ou o conteúdo não está mais disponível.</p><a class="btn btn-red" href="<?= h(url('index.php')) ?>">Voltar ao início</a></section>

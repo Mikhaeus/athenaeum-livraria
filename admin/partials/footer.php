@@ -1,0 +1,1 @@
+</main><footer class="site-footer"><div><a class="footer-brand" href="<?= h(url('index.php')) ?>">ATHENAEUM</a><p>Um acervo para descobrir histórias. Uma livraria para levar suas favoritas para casa.</p></div><small>Projeto acadêmico demonstrativo · <?= date('Y') ?></small></footer><script src="<?= h(url('public/js/app.js')) ?>"></script></body></html>
